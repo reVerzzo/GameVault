@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">GameVault</string>
+    <string name="app_tagline">Tu biblioteca de videojuegos</string>
+
+    <!-- Login -->
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Contraseña</string>
+    <string name="login_forgot">¿Olvidaste tu contraseña?</string>
+    <string name="login_button">Ingresar</string>
+    <string name="login_go_register">¿No tienes cuenta? Regístrate</string>
+
+    <!-- Registro -->
+    <string name="register_title">Crear cuenta</string>
+    <string name="register_subtitle">Únete y empieza a explorar miles de juegos</string>
+    <string name="register_confirm_hint">Confirmar contraseña</string>
+    <string name="register_button">Registrarse</string>
+    <string name="register_go_login">¿Ya tienes cuenta? Iniciar sesión</string>
+
+    <!-- Datos personales -->
+    <string name="personal_title">Datos personales</string>
+    <string name="personal_step">Paso 2 de 2 · Casi listo, gamer</string>
+    <string name="personal_section">Cuéntanos un poco sobre ti</string>
+    <string name="personal_name_hint">Nombre(s)</string>
+    <string name="personal_lastname_hint">Apellidos</string>
+    <string name="personal_phone_hint">Número de celular</string>
+    <string name="personal_birth_hint">Fecha de nacimiento</string>
+    <string name="personal_button">Empezar a explorar</string>
+
+    <!-- Home -->
+    <string name="home_greeting">Hola,</string>
+    <string name="home_search_hint">Busca un juego…</string>
+    <string name="home_section">Tendencia ahora</string>
+    <string name="home_section_subtitle">Los juegos más populares de la semana</string>
+    <string name="home_empty">No encontramos juegos con ese nombre</string>
+    <string name="rating_format">★ %.1f</string>
+
+    <!-- Detalle -->
+    <string name="detail_about">Acerca del juego</string>
+    <string name="detail_platforms">DISPONIBLE EN</string>
+    <string name="detail_developer">DESARROLLADOR</string>
+    <string name="detail_playtime">PLAYTIME PROMEDIO</string>
+    <string name="detail_add">Agregar a mi lista</string>
+    <string name="detail_remove">Quitar de mi lista</string>
+    <string name="detail_score_format">%1$.1f (%2$d)</string>
+    <string name="detail_metacritic_format">%d Meta</string>
+    <string name="detail_playtime_format">~ %d horas</string>
+
+    <!-- Favoritos -->
+    <string name="favorites_title">Mi lista</string>
+    <string name="favorites_search_hint">Buscar en mi lista…</string>
+    <string name="favorites_empty_title">Aún no tienes juegos guardados</string>
+    <string name="favorites_empty_subtitle">Explora el catálogo y agrega tus juegos favoritos a esta lista.</string>
+    <string name="favorites_explore">Explorar juegos</string>
+    <string name="favorite_meta_format">★ %1$.1f · %2$s</string>
+
+    <plurals name="favorites_count">
+        <item quantity="zero">Sin juegos guardados</item>
+        <item quantity="one">%d juego guardado</item>
+        <item quantity="other">%d juegos guardados</item>
+    </plurals>
+
+    <plurals name="account_stats_count">
+        <item quantity="zero">Sin títulos guardados</item>
+        <item quantity="one">%d título guardado</item>
+        <item quantity="other">%d títulos guardados</item>
+    </plurals>
+
+    <!-- Cuenta -->
+    <string name="account_title">Mi cuenta</string>
+    <string name="account_stats_label">Juegos en mi lista</string>
+    <string name="account_personal_info">INFORMACIÓN PERSONAL</string>
+    <string name="account_full_name">Nombre completo</string>
+    <string name="account_phone">Celular</string>
+    <string name="account_settings">Configuración</string>
+    <string name="account_settings_subtitle">Notificaciones, privacidad, idioma</string>
+    <string name="account_logout">Cerrar sesión</string>
+    <string name="account_version">GameVault v1.0 · Build 1</string>
+
+    <!-- Bottom navigation -->
+    <string name="tab_home">Inicio</string>
+    <string name="tab_favorites">Lista</string>
+    <string name="tab_account">Cuenta</string>
+</resources>
