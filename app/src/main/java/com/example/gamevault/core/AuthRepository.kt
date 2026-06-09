@@ -1,0 +1,70 @@
+package com.example.gamevault.core
+
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+import com.google.firebase.auth.FirebaseUser
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
+
+/**
+ * Implementación de la autenticación contra Firebase Auth.
+ */
+class AuthRepository : Authentication {
+    private val auth = FirebaseAuth.getInstance()
+
+    val currentUser: FirebaseUser? get() = auth.currentUser
+
+    override suspend fun requestLogin(
+        email: String,
+        password: String
+    ): ResponseService<FirebaseUser> = withContext(Dispatchers.IO) {
+        try {
+            val result = auth.signInWithEmailAndPassword(email, password).await()
+            result.user?.let { ResponseService.Success(it) }
+                ?: ResponseService.Error("Usuario no encontrado")
+        } catch (e: FirebaseAuthInvalidUserException) {
+            ResponseService.Error("No existe una cuenta con ese correo")
+        } catch (e: FirebaseAuthInvalidCredentialsException) {
+            ResponseService.Error("Correo o contraseña incorrectos")
+        } catch (e: FirebaseAuthException) {
+            ResponseService.Error(e.localizedMessage ?: "Error de autenticación")
+        } catch (e: Exception) {
+            ResponseService.Error("Error inesperado. Intenta de nuevo")
+        }
+    }
+
+    override suspend fun requestSignUp(
+        email: String,
+        password: String
+    ): ResponseService<FirebaseUser> = withContext(Dispatchers.IO) {
+        try {
+            val result = auth.createUserWithEmailAndPassword(email, password).await()
+            result.user?.let { ResponseService.Success(it) }
+                ?: ResponseService.Error("No se pudo crear el usuario")
+        } catch (e: FirebaseAuthUserCollisionException) {
+            ResponseService.Error("Este correo ya está registrado, intenta con otro")
+        } catch (e: FirebaseAuthWeakPasswordException) {
+            ResponseService.Error("La contraseña es muy débil")
+        } catch (e: Exception) {
+            ResponseService.Error("Error inesperado. Intenta de nuevo")
+        }
+    }
+
+    override suspend fun requestPasswordReset(
+        email: String
+    ): ResponseService<Unit> = withContext(Dispatchers.IO) {
+        try {
+            auth.sendPasswordResetEmail(email).await()
+            ResponseService.Success(Unit)
+        } catch (e: Exception) {
+            ResponseService.Error("No se pudo enviar el correo de recuperación")
+        }
+    }
+
+    fun signOut() = auth.signOut()
+}
